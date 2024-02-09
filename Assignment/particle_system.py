@@ -1,6 +1,6 @@
 # Particle System
 # taken from https://www.makeuseof.com/pygame-games-special-effects-particle-systems-visual-enhancements/
-# Altered by Julian van der Sluis
+# Altered by Julian van der Sluis and Willem Paternotte
 
 import pygame
 import random

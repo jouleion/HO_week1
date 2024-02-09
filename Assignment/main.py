@@ -46,7 +46,7 @@ rows, columns = 27, 19
 TSP = TSPDecoder(rows=rows, columns=columns)
 
 # Define constants
-PIXEL_WIDTH = 25
+PIXEL_WIDTH = 36
 PIXEL_HEIGHT = 25
 PIXEL_MARGIN = 0
 BLACK = (0, 0, 0)
@@ -57,6 +57,7 @@ WINDOW_SIZE = [
     columns * PIXEL_WIDTH + columns,
     rows * PIXEL_HEIGHT + rows
 ]
+
 screen = pygame.display.set_mode(WINDOW_SIZE)
 
 pygame.display.set_caption("Haptic Skin visualiser")

@@ -9,8 +9,6 @@ import pygame
 from pygame import gfxdraw
 
 
-
-
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((720, 500))

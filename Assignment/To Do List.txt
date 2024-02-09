@@ -1,0 +1,11 @@
+TO DO
+
+Particle System [Julian]
+(Reusable in pygame for future project, with correct color and object position handling)
+Spawn Particles
+Update Particles
+Delete Particles
+
+Implement color circles in particle system [Julian & Willem]
+
+Rework Screen dimentions        [Willem]

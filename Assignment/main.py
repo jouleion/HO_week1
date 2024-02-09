@@ -16,7 +16,7 @@ running = True
 dt = 0
 
 # color variables
-color_speed = 1.1
+color_speed = 1.001
 
 # initialize color values
 r = random.randint(50, 255)
@@ -37,18 +37,19 @@ rows, columns = 27, 19
 TSP = TSPDecoder(rows=rows, columns=columns)
 
 # Define constants
-PIXEL_WIDTH = 35
-PIXEL_HEIGHT = 30
+PIXEL_WIDTH = 25
+PIXEL_HEIGHT = 25
 PIXEL_MARGIN = 0
 BLACK = (0, 0, 0)
 
 # Initialise the PyGame screen according to resolution
 pygame.init()
 WINDOW_SIZE = [
-    columns * PIXEL_WIDTH + columns * PIXEL_MARGIN + 2 * PIXEL_MARGIN,
-    rows * PIXEL_HEIGHT + rows * PIXEL_MARGIN + 2 * PIXEL_MARGIN
+    columns * PIXEL_WIDTH + columns,
+    rows * PIXEL_HEIGHT + rows
 ]
 screen = pygame.display.set_mode(WINDOW_SIZE)
+
 pygame.display.set_caption("Haptic Skin visualiser")
 
 # Initialise the PyGame Clock for timing
@@ -83,20 +84,26 @@ def update_color():
     return color
 
 
-def draw_circle():
+def draw_circle(x, y):
     # update color
     circle_color = update_color()
 
     # generate new random position for next circle
-    random_position = [random.randint(0, screen.get_width()), random.randint(0, screen.get_height())]
+    # random_position = [random.randint(0, screen.get_width()), random.randint(0, screen.get_height())]
 
     # generate random radius
     random_radius = random.randint(5, 20)
 
+    offset = random.randint(0, 50) - 25
+    x_scaled = PIXEL_WIDTH * (x + int(offset / 10))
+
+    offset = random.randint(0, 50) - 25
+    y_scaled = PIXEL_HEIGHT * (y + int(offset / 10))
+
     # draw each cirlce
     # pygame.draw.circle(screen, circle_color, random_position, random_radius)
-    gfxdraw.aacircle(screen, random_position[0], random_position[1], random_radius, circle_color)
-    gfxdraw.filled_circle(screen, random_position[0], random_position[1], random_radius, circle_color)
+    gfxdraw.aacircle(screen, y_scaled + random_radius, x_scaled + random_radius, random_radius, circle_color)
+    gfxdraw.filled_circle(screen, y_scaled + random_radius, x_scaled + random_radius, random_radius, circle_color)
 
 
 running = True
@@ -113,17 +120,23 @@ while TSP.available and running:
     grid = TSP.readFrame()
 
     # Clear the screen by blacking it out
-    screen.fill(BLACK)
+    screen.fill((0, 0, 0, 10))
 
     # Loop through all pixels in the frame
     for row in range(rows):
         for column in range(columns):
             # Get the pixel value and set the gray value accordingly
             pixel = grid[row][column]
-            color = (pixel, pixel, pixel)
+
+            # color = (pixel, pixel, pixel)
+
+            # draw circles
+            if(pixel > 40):
+                for i in range(10):
+                    draw_circle(row, column)
 
             # Draw the pixel on the screen
-            pygame.draw.rect(
+            """pygame.draw.rect(
                 screen,
                 color,
                 [
@@ -132,11 +145,9 @@ while TSP.available and running:
                     PIXEL_WIDTH,
                     PIXEL_HEIGHT
                 ]
-            )
+            )"""
 
-    # draw circles
-    for i in range(0, 10):
-        draw_circle()
+
 
     # Limit the framerate to 60FPS
     # consistent FPS

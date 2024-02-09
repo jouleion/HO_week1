@@ -92,18 +92,18 @@ def draw_circle(x, y, intensity):
     # random_position = [random.randint(0, screen.get_width()), random.randint(0, screen.get_height())]
 
     # generate random radius
-    random_radius = random.randint(1, int(intensity/20))
+    random_radius = random.randint(0, int(intensity/40))
 
-    offset = np.random.normal(0, intensity/12)
+    offset = np.random.normal(0, intensity/6)
     x_scaled = PIXEL_WIDTH * x + int(offset)
 
-    offset = np.random.normal(0, intensity/12)
+    offset = np.random.normal(0, intensity/6)
     y_scaled = PIXEL_HEIGHT * y + int(offset)
 
     # draw each cirlce
     # pygame.draw.circle(screen, circle_color, random_position, random_radius)
     gfxdraw.aacircle(screen, y_scaled + random_radius, x_scaled + random_radius, random_radius, circle_color)
-    gfxdraw.filled_circle(screen, y_scaled + random_radius, x_scaled + random_radius, random_radius, circle_color)
+    # gfxdraw.filled_circle(screen, y_scaled + random_radius, x_scaled + random_radius, random_radius, circle_color)
 
 
 running = True
@@ -132,7 +132,7 @@ while TSP.available and running:
 
             # draw circles
             if(pixel > 40):
-                for i in range(10):
+                for i in range(random.randint(1,int(pixel/10))):
                     draw_circle(row, column, pixel)
 
             # Draw the pixel on the screen

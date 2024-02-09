@@ -94,10 +94,10 @@ def draw_circle(x, y):
     # generate random radius
     random_radius = random.randint(5, 20)
 
-    offset = random.randint(0, 50) - 25
+    offset = random.randint(0, 10) -5
     x_scaled = PIXEL_WIDTH * (x + int(offset / 10))
 
-    offset = random.randint(0, 50) - 25
+    offset = random.randint(0, 10) - 5
     y_scaled = PIXEL_HEIGHT * (y + int(offset / 10))
 
     # draw each cirlce
@@ -120,7 +120,7 @@ while TSP.available and running:
     grid = TSP.readFrame()
 
     # Clear the screen by blacking it out
-    screen.fill((0, 0, 0, 10))
+    gfxdraw.box(screen,  (0,0,WINDOW_SIZE[0],WINDOW_SIZE[1]),(0,0,0,10)  )
 
     # Loop through all pixels in the frame
     for row in range(rows):

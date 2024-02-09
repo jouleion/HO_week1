@@ -1,13 +1,16 @@
-from TSPDecoder import *
+# interactive visualisation for the TSP
+# made by Julian van der Sluis and Willem Paternotte
+#hello 3
+from Tutorial_4.TSPDecoder import *
 import pygame
 
 rows, columns = 27, 19
 TSP = TSPDecoder(rows=rows, columns=columns)
 
 # Define constants
-PIXEL_WIDTH = 20
-PIXEL_HEIGHT = 10
-PIXEL_MARGIN = 2
+PIXEL_WIDTH = 35
+PIXEL_HEIGHT = 30
+PIXEL_MARGIN = 0
 BLACK = (0, 0, 0)
 
 # Initialise the PyGame screen according to resolution

@@ -8,4 +8,4 @@ Delete Particles
 
 Implement color circles in particle system [Julian & Willem]
 
-Rework Screen dimentions        [Willem]
+Rework Screen dimensions        [Willem]

@@ -4,6 +4,7 @@
 
 import pygame
 import random
+import numpy as np
 
 class Particle:
     def __init__(self, x, y,init_color):
@@ -72,7 +73,8 @@ class ParticleSystem:
         return color
 
     def add_particle(self, x, y):
-        self.particles.append(Particle(x, y, self.update_color()))
+        spread = 20
+        self.particles.append(Particle(x + int( np.random.normal(0, spread)), y + int( np.random.normal(0, spread)), self.update_color()))
 
     def update(self):
         color = self.update_color()

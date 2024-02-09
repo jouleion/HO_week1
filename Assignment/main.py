@@ -48,8 +48,8 @@ def update():
 
             # spawn particles
             if (pixel > SPAWN_THRESHOLD):
-                for i in range(random.randint(1, 1 + int(pixel / 400))):
-                    particle_system.add_particle(row * PIXEL_HEIGHT, column * PIXEL_WIDTH)
+                if(random.randint(0, 100) > 90):
+                    particle_system.add_particle(column * PIXEL_WIDTH, row * PIXEL_HEIGHT)
     # update particles
     particle_system.update()
 

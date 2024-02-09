@@ -2,18 +2,27 @@
 # made by Julian van der Sluis and Willem Paternotte
 #hello 3
 from Tutorial_4.TSPDecoder import *
-import pygame
+from particle_system import *
+
 import random
 import pygame
 from pygame import gfxdraw
+
+
 
 
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((720, 500))
 clock = pygame.time.Clock()
-running = True
 dt = 0
+running = True
+
+# has to be after random library and pygames init
+particle_system = ParticleSystem()
+
+
+
 
 # color variables
 color_speed = 1.001
@@ -105,8 +114,6 @@ def draw_circle(x, y, intensity):
     gfxdraw.aacircle(screen, y_scaled + random_radius, x_scaled + random_radius, random_radius, circle_color)
     # gfxdraw.filled_circle(screen, y_scaled + random_radius, x_scaled + random_radius, random_radius, circle_color)
 
-
-running = True
 
 while TSP.available and running:
     # Check if the screen is closed and quit

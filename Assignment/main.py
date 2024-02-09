@@ -19,9 +19,6 @@ running = True
 # has to be after random library and pygames init
 particle_system = ParticleSystem()
 
-
-
-
 # color variables
 color_speed = 1.001
 
@@ -153,7 +150,9 @@ while TSP.available and running:
                 ]
             )"""
 
-
+    particle_system.add_particle(50, 50)
+    particle_system.update()
+    particle_system.draw(screen)
 
     # Limit the framerate to 60FPS
     # consistent FPS

@@ -135,7 +135,7 @@ while TSP.available and running:
 
             # draw circles
             if(pixel > 40):
-                for i in range(random.randint(1,int(pixel/10))):
+                for i in range(random.randint(1,int(pixel/40))):
                     draw_circle(row, column, pixel)
 
             # Draw the pixel on the screen

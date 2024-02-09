@@ -2,6 +2,9 @@
 # taken from https://www.makeuseof.com/pygame-games-special-effects-particle-systems-visual-enhancements/
 # Altered by Julian van der Sluis
 
+import pygame
+import random
+
 class Particle:
     def __init__(self, x, y):
         self.x = x

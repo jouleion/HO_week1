@@ -8,8 +8,8 @@ rows, columns = 27, 19
 TSP = TSPDecoder(rows=rows, columns=columns)
 
 # Define constants
-PIXEL_WIDTH = 40
-PIXEL_HEIGHT = 40
+PIXEL_WIDTH = 35
+PIXEL_HEIGHT = 30
 PIXEL_MARGIN = 0
 BLACK = (0, 0, 0)
 

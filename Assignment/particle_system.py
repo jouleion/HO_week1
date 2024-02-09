@@ -72,8 +72,9 @@ class ParticleSystem:
         self.particles.append(Particle(x, y, self.update_color()))
 
     def update(self):
+        color = self.update_color()
         for particle in self.particles:
-            particle.update(self.update_color())
+            particle.update(color)
 
             if particle.lifetime <= 0:
                 self.particles.remove(particle)

@@ -1,16 +1,67 @@
-# This is a sample Python script.
+# interactive visualisation for the TSP
+# made by Julian van der Sluis and Willem Paternotte
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from Tutorial_4.TSPDecoder import *
+import pygame
 
+rows, columns = 27, 19
+TSP = TSPDecoder(rows=rows, columns=columns)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# Define constants
+PIXEL_WIDTH = 20
+PIXEL_HEIGHT = 10
+PIXEL_MARGIN = 2
+BLACK = (0, 0, 0)
 
+# Initialise the PyGame screen according to resolution
+pygame.init()
+WINDOW_SIZE = [
+    columns * PIXEL_WIDTH + columns * PIXEL_MARGIN + 2 * PIXEL_MARGIN,
+    rows * PIXEL_HEIGHT + rows * PIXEL_MARGIN + 2 * PIXEL_MARGIN
+]
+screen = pygame.display.set_mode(WINDOW_SIZE)
+pygame.display.set_caption("Haptic Skin visualiser")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# Initialise the PyGame Clock for timing
+clock = pygame.time.Clock()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+running = True
+while True:
+    # Check if the screen is closed and quit
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            running = False
+            exit()
+
+    # Get the frame
+    grid = TSP.readFrame()
+
+    # Clear the screen by blacking it out
+    screen.fill(BLACK)
+
+    # Loop through all pixels in the frame
+    for row in range(rows):
+        for column in range(columns):
+            # Get the pixel value and set the gray value accordingly
+            pixel = grid[row][column]
+            color = (pixel, pixel, pixel)
+
+            # Draw the pixel on the screen
+            pygame.draw.rect(
+                screen,
+                color,
+                [
+                    PIXEL_MARGIN + ((PIXEL_MARGIN + PIXEL_WIDTH) * column),
+                    PIXEL_MARGIN + ((PIXEL_MARGIN + PIXEL_HEIGHT) * row),
+                    PIXEL_WIDTH,
+                    PIXEL_HEIGHT
+                ]
+            )
+
+    # Limit the framerate to 60FPS
+    clock.tick(60)
+
+    # Draw to the display
+    pygame.display.flip()
+

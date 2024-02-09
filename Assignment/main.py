@@ -103,11 +103,10 @@ def draw_circle(x, y, intensity):
     random_radius = random.randint(0, int(intensity/40))
 
     offset = np.random.normal(0, intensity/6)
-    x_scaled = PIXEL_WIDTH * x + int(offset)
+    x_scaled = int(PIXEL_HEIGHT * (x+0.5) + offset)
 
     offset = np.random.normal(0, intensity/6)
-    y_scaled = PIXEL_HEIGHT * y + int(offset)
-
+    y_scaled = int(PIXEL_WIDTH * (y+0.5) + offset)
     # draw each cirlce
     # pygame.draw.circle(screen, circle_color, random_position, random_radius)
     gfxdraw.aacircle(screen, y_scaled + random_radius, x_scaled + random_radius, random_radius, circle_color)

@@ -1,18 +1,55 @@
 from particle_system import *
 import random
 import pygame
-import numpy as np
 from pygame import gfxdraw
 
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((720, 500))
+pygame.display.set_caption("Particle Test")
 clock = pygame.time.Clock()
 dt = 0
 running = True
 
 # has to be after random library and pygames init
 particle_system = ParticleSystem()
+
+def update():
+    # Clear the screen by blacking it out
+    gfxdraw.box(screen, (0, 0, 700, 700), (0, 0, 0, 10))
+
+    # simulate particles being added where screen is being pressed
+    for x in range(20):
+        for y in range(20):
+            if (random.randint(0, 100) > 98):
+                particle_system.add_particle(x * 30, y * 30)
+
+    # update and draw particles
+    particle_system.update()
+
+
+def draw():
+    particle_system.draw(screen)
+
+    # Draw to the display
+    pygame.display.flip()
+
+
+while running:
+    # Check if the screen is closed and quit
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            running = False
+            exit()
+
+    update()
+    draw()
+
+    # consistent 60 fps
+    dt = clock.tick(60) / 1000
+
+"""
 
 # color variables
 color_speed = 1.001
@@ -31,17 +68,6 @@ bfac = random.random() * 1.5 + 0.2
 rdir = 1
 gdir = 1
 bdir = 1
-
-rows, columns = 27, 19
-
-# Define constants
-PIXEL_WIDTH = 36
-PIXEL_HEIGHT = 25
-
-pygame.display.set_caption("Particle Test")
-
-# Initialise the PyGame Clock for timing
-clock = pygame.time.Clock()
 
 def check_color_direction(color, dir):
     new_dir = dir
@@ -92,32 +118,4 @@ def draw_circle(x, y, intensity):
     # pygame.draw.circle(screen, circle_color, random_position, random_radius)
     gfxdraw.aacircle(screen, y_scaled + random_radius, x_scaled + random_radius, random_radius, circle_color)
     # gfxdraw.filled_circle(screen, y_scaled + random_radius, x_scaled + random_radius, random_radius, circle_color)
-
-while running:
-    # Check if the screen is closed and quit
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            running = False
-            exit()
-
-    # Clear the screen by blacking it out
-    gfxdraw.box(screen,(0,0, 700, 700),(0,0,0,10))
-
-    # simulate particles being added where screen is being pressed
-    for x in range(20):
-        for y in range(20):
-            if(random.randint(0, 100) > 98):
-                particle_system.add_particle(x * 30, y * 30)
-
-    # update and draw particles
-    particle_system.update()
-    particle_system.draw(screen)
-
-
-    # Limit the framerate to 60FPS
-    # consistent FPS
-    dt = clock.tick(60) / 1000
-
-    # Draw to the display
-    pygame.display.flip()
+"""

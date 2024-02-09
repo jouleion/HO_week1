@@ -93,7 +93,7 @@ class ParticleSystem:
                     self.y = y
                     self.dx = random.uniform(-1, 1)
                     self.dy = random.uniform(-1, 1)
-                    self.lifetime = 60
+                    self.lifetime = 30
 
                 def update(self):
                     self.x += self.dx

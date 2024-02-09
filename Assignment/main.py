@@ -35,6 +35,7 @@ running = True
 particle_system = ParticleSystem()
 SPAWN_THRESHOLD = 30
 
+
 def update():
     # Get the frame
     grid = TSP.readFrame()
@@ -47,7 +48,7 @@ def update():
 
             # spawn particles
             if (pixel > SPAWN_THRESHOLD):
-                for i in range(random.randint(1, int(pixel / 40))):
+                for i in range(random.randint(1, 1 + int(pixel / 400))):
                     particle_system.add_particle(row * PIXEL_HEIGHT, column * PIXEL_WIDTH)
     # update particles
     particle_system.update()

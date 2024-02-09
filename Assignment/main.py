@@ -3,6 +3,35 @@
 #hello 3
 from Tutorial_4.TSPDecoder import *
 import pygame
+import random
+import pygame
+from pygame import gfxdraw
+
+
+# pygame setup
+pygame.init()
+screen = pygame.display.set_mode((720, 500))
+clock = pygame.time.Clock()
+running = True
+dt = 0
+
+# color variables
+color_speed = 1.1
+
+# initialize color values
+r = random.randint(50, 255)
+g = random.randint(50, 255)
+b = random.randint(50, 255)
+
+# initialize color factors
+rfac = random.random() * 1.5 + 0.2
+gfac = random.random() * 1.5 + 0.2
+bfac = random.random() * 1.5 + 0.2
+
+# initialize color direction variables 1 = up, -1 = down
+rdir = 1
+gdir = 1
+bdir = 1
 
 rows, columns = 27, 19
 TSP = TSPDecoder(rows=rows, columns=columns)
@@ -59,8 +88,13 @@ while TSP.available and running:
                 ]
             )
 
+    # draw circles
+    for i in range(0, 10):
+        draw_circle()
+
     # Limit the framerate to 60FPS
-    clock.tick(60)
+    # consistent FPS
+    dt = clock.tick(60) / 1000
 
     # Draw to the display
     pygame.display.flip()

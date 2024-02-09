@@ -10,7 +10,7 @@ TSP = TSPDecoder(rows=rows, columns=columns)
 # Define constants
 PIXEL_WIDTH = 20
 PIXEL_HEIGHT = 10
-PIXEL_MARGIN = 2
+PIXEL_MARGIN = 0
 BLACK = (0, 0, 0)
 
 # Initialise the PyGame screen according to resolution
@@ -26,7 +26,7 @@ pygame.display.set_caption("Haptic Skin visualiser")
 clock = pygame.time.Clock()
 
 running = True
-while True:
+while TSP.available and running:
     # Check if the screen is closed and quit
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

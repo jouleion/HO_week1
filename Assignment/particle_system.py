@@ -24,6 +24,9 @@ class Particle:
         position = (int(self.x), int(self.y))
         pygame.draw.circle(window, self.color, position, 2)
 
+    def get_lifetime(self):
+        return self.lifetime
+
 # Particle system class
 class ParticleSystem:
     def __init__(self):
@@ -76,7 +79,7 @@ class ParticleSystem:
         for particle in self.particles:
             particle.update(color)
 
-            if particle.lifetime <= 0:
+            if particle.get_lifetime() <= 0:
                 self.particles.remove(particle)
 
     def draw(self, window):

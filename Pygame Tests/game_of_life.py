@@ -1,6 +1,7 @@
 # Game of life pygame example retrieved from https://beltoforion.de/en/recreational_mathematics/game_of_life.php
 # Altered by Julian van der Sluis to include simulation of the Touch sensitive pad input
-# hi
+
+
 import pygame
 import numpy as np
 import random

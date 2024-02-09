@@ -84,7 +84,7 @@ def update_color():
     return color
 
 
-def draw_circle(x, y):
+def draw_circle(x, y, intensity):
     # update color
     circle_color = update_color()
 
@@ -92,13 +92,13 @@ def draw_circle(x, y):
     # random_position = [random.randint(0, screen.get_width()), random.randint(0, screen.get_height())]
 
     # generate random radius
-    random_radius = random.randint(5, 20)
+    random_radius = random.randint(1, int(intensity/20))
 
-    offset = random.randint(0, 10) -5
-    x_scaled = PIXEL_WIDTH * (x + int(offset / 10))
+    offset = np.random.normal(0, intensity/12)
+    x_scaled = PIXEL_WIDTH * x + int(offset)
 
-    offset = random.randint(0, 10) - 5
-    y_scaled = PIXEL_HEIGHT * (y + int(offset / 10))
+    offset = np.random.normal(0, intensity/12)
+    y_scaled = PIXEL_HEIGHT * y + int(offset)
 
     # draw each cirlce
     # pygame.draw.circle(screen, circle_color, random_position, random_radius)
@@ -133,7 +133,7 @@ while TSP.available and running:
             # draw circles
             if(pixel > 40):
                 for i in range(10):
-                    draw_circle(row, column)
+                    draw_circle(row, column, pixel)
 
             # Draw the pixel on the screen
             """pygame.draw.rect(

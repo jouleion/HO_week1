@@ -33,13 +33,11 @@ running = True
 
 # init particle system
 particle_system = ParticleSystem()
+SPAWN_THRESHOLD = 30
 
 def update():
     # Get the frame
     grid = TSP.readFrame()
-
-    # Clear the screen by blacking it out
-    gfxdraw.box(screen, (0, 0, WINDOW_SIZE[0], WINDOW_SIZE[1]), (0, 0, 0, 10))
 
     # Loop through all pixels in the frame
     for row in range(rows):
@@ -48,16 +46,16 @@ def update():
             pixel = grid[row][column]
 
             # spawn particles
-            if (pixel > 40):
+            if (pixel > SPAWN_THRESHOLD):
                 for i in range(random.randint(1, int(pixel / 40))):
-                    particle_system.add_particle(50, 50)
+                    particle_system.add_particle(row * PIXEL_HEIGHT, column * PIXEL_WIDTH)
     # update particles
     particle_system.update()
 
 
 def draw():
     # Clear the screen by blacking it out
-    gfxdraw.box(screen, (0, 0, 700, 700), (0, 0, 0, 10))
+    gfxdraw.box(screen, (0, 0, WINDOW_SIZE[0], WINDOW_SIZE[1]), (0, 0, 0, 10))
 
     # draw particles
     particle_system.draw(screen)
@@ -73,3 +71,8 @@ while TSP.available and running:
             pygame.quit()
             running = False
             exit()
+    update()
+    draw()
+
+    # consistent 60 fps
+    dt = clock.tick(60) / 1000

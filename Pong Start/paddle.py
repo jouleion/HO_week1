@@ -68,16 +68,32 @@ class Paddle:
         # return distance
         return numpy.sqrt(dist_x ** 2 + dist_y ** 2)
 
+    def is_colliding(self, other):
+        ball_x, ball_y = other.position
+        ball_radius = other.radius
+        ball_next_x = ball_x + other.velocity[0]
+        ball_next_y = ball_y + other.velocity[0]
+
+        # Calculate the distance between the center of the circle and the center of the rectangle
+        dist_x = abs(ball_next_x - (self.position[0] + self.velocity[0] + self.width / 2))
+        dist_y = abs(ball_next_y - (self.position[1] + self.velocity[1] + self.height / 2))
+
+        # Check if the distance is less than or equal to the sum of the circle radius and half of the rectangle width/height
+        if dist_x > (self.width / 2 + ball_radius):
+            return False
+        if dist_y > (self.height / 2 + ball_radius):
+            return False
+        if dist_x <= (self.width / 2):
+            return True
+        if dist_y <= (self.height / 2):
+            return True
+
+        corner_dist_sq = (dist_x - (self.width / 2)) ** 2 + (dist_y - (self.height / 2)) ** 2
+        return corner_dist_sq <= (ball_radius ** 2)
+
     def check_collision(self, other):
-        # rectangle circle collision
-        distance_now = self.get_circle_rect_distance(other.position, self.position)
-        distance_next = self.get_circle_rect_distance(other.position + other.velocity, self.position + self.velocity)
-
-        if(distance_now == -1 or distance_next == -1):
-            print("Ball in paddle")
-
         # check if ball is colliding in the next frame, but not this frame, then update velociy of ball
-        if distance_now > other.radius > distance_next:
+        if self.is_colliding(other):
             print("Touching")
 
             # calculate bounce with impulse
